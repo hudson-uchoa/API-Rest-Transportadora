@@ -4,8 +4,11 @@
   "description": "API Rest da Transportadora Shark",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./src/server.js",
+    "dev": "nodemon ./src/server.js"
   },
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Hudson-Uchoa/API-Rest-Transportadora.git"
@@ -18,7 +21,7 @@
   "homepage": "https://github.com/Hudson-Uchoa/API-Rest-Transportadora#readme",
   "dependencies": {
     "express": "^4.17.3",
-    "sqlite": "^4.0.25"
+    "sqlite3": "^5.0.2"
   },
   "devDependencies": {
     "jest": "^27.5.1",
