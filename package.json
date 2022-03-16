@@ -19,5 +19,9 @@
   "dependencies": {
     "express": "^4.17.3",
     "sqlite": "^4.0.25"
+  },
+  "devDependencies": {
+    "jest": "^27.5.1",
+    "nodemon": "^2.0.15"
   }
 }
