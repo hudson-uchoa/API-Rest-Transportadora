@@ -28,10 +28,9 @@ const clienteController = (app, bd)=>{
 
     app.post('/cliente', (req, res)=>{
         const body = req.body
-
         try {
-            const novoCliente = new Cliente(body.nome_completo, body.cpf, body.telefone, body.email, body.pedidos_id)
-
+            const novoCliente = new Cliente(body.ID, body.NOME_COMPLETO, body.CPF, body.TELEFONE, body.EMAIL, body.PEDIDOS_ID)
+            console.log(novoCliente);
             clienteDAO.insereCliente(novoCliente)
             .then((resposta)=>{
                 res.json(resposta)
@@ -65,7 +64,7 @@ const clienteController = (app, bd)=>{
         const body = req.body
 
         try {
-            const clienteAtualizado = new Cliente(body.nome_completo, body.cpf, body.telefone, body.email, body.pedidos_id)
+            const clienteAtualizado = new Cliente(body.NOME_COMPLETO, body.CPF, body.TELEFONE, body.EMAIL, body.PEDIDOS_ID)
 
             clienteDAO.atualizaCliente(id, clienteAtualizado)
             .then((resposta)=>{

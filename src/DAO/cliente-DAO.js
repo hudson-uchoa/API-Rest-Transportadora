@@ -44,8 +44,8 @@ class ClienteDAO {
 
     insereCliente = (novoCliente)=>{
         return new Promise((resolve, reject)=>{
-            this.db.run('INSERT INTO CLIENTES(NOME_COMPLETO, CPF, TELEFONE, EMAIL, PEDIDOS_ID) VALUES (?, ?, ?)',
-            novoCliente.nome_completo, novoCliente.cpf, novoCliente.telefone, novoCliente.email, novoCliente.pedidos_id,
+            this.db.run('INSERT INTO CLIENTES VALUES (?, ?, ?, ?, ?, ?)',
+            novoCliente.id ,novoCliente.nome_completo, novoCliente.cpf, novoCliente.telefone, novoCliente.email, novoCliente.pedidos_id,
             (error)=>{
                 if(error){
                     reject({
