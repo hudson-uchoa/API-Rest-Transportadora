@@ -7,10 +7,10 @@ const clienteController = (app, bd)=>{
     app.get('/cliente', (req, res)=>{
         clienteDAO.pegaTodosClientes()
         .then((resposta)=>{
-            res.json(resposta)
+            res.status(302).json(resposta)
         })
         .catch((erro)=>{
-            res.json(erro)
+            res.status(404).json(erro)
         })
     })
 
@@ -19,10 +19,10 @@ const clienteController = (app, bd)=>{
 
         clienteDAO.pegaUmCliente(id)
         .then((resposta)=>{
-            res.json(resposta)
+            res.status(302).json(resposta)
         })
         .catch((erro)=>{
-            res.json(erro)
+            res.status(404).json(erro)
         })
     })
 
@@ -33,10 +33,10 @@ const clienteController = (app, bd)=>{
             
             clienteDAO.insereCliente(novoCliente)
             .then((resposta)=>{
-                res.json(resposta)
+                res.status(201).json(resposta)
             })
             .catch((erro)=>{
-                res.json(erro)
+                res.status(400).json(erro)
             })
         } catch (error) {
             res.json({
@@ -51,10 +51,10 @@ const clienteController = (app, bd)=>{
 
         clienteDAO.deletaCliente(id)
         .then((resposta)=>{
-            res.json(resposta)
+            res.status(200).json(resposta)
         })
         .catch((erro)=>{
-            res.json(erro)
+            res.status(404).json(erro)
         })
     })
 
@@ -68,10 +68,10 @@ const clienteController = (app, bd)=>{
 
             clienteDAO.atualizaCliente(id, clienteAtualizado)
             .then((resposta)=>{
-                res.json(resposta)
+                res.status(200).json(resposta)
             })
             .catch((erro)=>{
-                res.json(erro)
+                res.status(404).json(erro)
             })
         } catch (error) {
             res.json({
