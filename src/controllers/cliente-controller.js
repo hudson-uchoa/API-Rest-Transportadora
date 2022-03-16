@@ -30,7 +30,7 @@ const clienteController = (app, bd)=>{
         const body = req.body
         try {
             const novoCliente = new Cliente(body.ID, body.NOME_COMPLETO, body.CPF, body.TELEFONE, body.EMAIL, body.PEDIDOS_ID)
-            console.log(novoCliente);
+            
             clienteDAO.insereCliente(novoCliente)
             .then((resposta)=>{
                 res.json(resposta)
@@ -64,7 +64,7 @@ const clienteController = (app, bd)=>{
         const body = req.body
 
         try {
-            const clienteAtualizado = new Cliente(body.NOME_COMPLETO, body.CPF, body.TELEFONE, body.EMAIL, body.PEDIDOS_ID)
+            const clienteAtualizado = new Cliente(body.ID, body.NOME_COMPLETO, body.CPF, body.TELEFONE, body.EMAIL, body.PEDIDOS_ID)
 
             clienteDAO.atualizaCliente(id, clienteAtualizado)
             .then((resposta)=>{
