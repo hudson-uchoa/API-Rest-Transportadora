@@ -107,6 +107,7 @@ class ClienteDAO {
             )
         })
     }
+
 }
 
 export default ClienteDAO
