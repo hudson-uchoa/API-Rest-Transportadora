@@ -12,7 +12,7 @@ const db = new sqlite3.Database(filePath);
 const CLIENTES_SCHEMA = `
 CREATE TABLE IF NOT EXISTS "CLIENTES" (
     "ID" INTEGER PRIMARY KEY AUTOINCREMENT,
-    "NOME_COMPLETO" varchar(64),
+    "NOME_COMPLETO" varchar(40),
     "CPF" number,
     "TELEFONE" number,
     "EMAIL" varchar(30),
@@ -34,14 +34,14 @@ VALUES
     (10, 'Márcia Melo Resende', '94137767092', '67987741537', 'marcia.resende.melo@gmail.com', 10)
 `
 
-function criaTabelaUsr() {
+function criaTabelaClt() {
     db.run(CLIENTES_SCHEMA, (error)=> {
        if (error) console.log("Erro ao criar tabela de clientes");
     });
 }
 
 
-function populaTabelaUsr() {
+function populaTabelaClt() {
     db.run(ADD_CLIENTES_DATA, (error)=> {
        if (error) console.log("Erro ao popular tabela de clientes");
     });
@@ -49,6 +49,6 @@ function populaTabelaUsr() {
 
 
 db.serialize( ()=> {
-    criaTabelaUsr();
-    populaTabelaUsr();
+    criaTabelaClt();
+    populaTabelaClt();
 });
