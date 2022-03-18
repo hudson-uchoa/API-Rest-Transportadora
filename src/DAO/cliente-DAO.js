@@ -23,7 +23,7 @@ class ClienteDAO {
 
     pegaUmCliente = (id)=>{
         return new Promise((resolve, reject)=>{
-            this.db.all('SELECT * FROM CLIENTES WHERE ID = ?', 
+            this.db.get('SELECT * FROM CLIENTES WHERE ID = ?', 
             id,
             (error, rows)=>{
                 if(error){
@@ -108,6 +108,13 @@ class ClienteDAO {
         })
     }
 
+    _verificaId = async (id)=>{
+        const usuario = await this.pegaUmCliente(id)
+        if(usuario.usuario === undefined){
+            throw new Error(`Usuario de ${id} não encontrado.`)
+        }
+        return usuario
+    }
 }
 
 export default ClienteDAO

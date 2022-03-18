@@ -22,10 +22,12 @@ const clienteController = (app, bd)=>{
     app.get('/cliente/id/:id', async (req, res)=>{
         const id = req.params.id
         try{
-            res.status(302).json(await clienteDAO.pegaUmCliente(id))
-
+            await clienteDAO._verificaId(id)
+            const client = await clienteDAO.pegaUmCliente(id)
+            res.json(client)
+            
         }catch(error){
-            res.status(404).json(error)
+            res.status(404).json(error.message)
         }
         // .then((resposta)=>{
         //     res.status(302).json(resposta)
@@ -92,7 +94,7 @@ const clienteController = (app, bd)=>{
         } catch (error) {
 
             res.status(404).json(error)
-            
+
             res.json({
                 "msg": error.message,
                 "erro": true
