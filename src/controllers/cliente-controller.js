@@ -24,7 +24,7 @@ const clienteController = (app, bd)=>{
         try{
             await clienteDAO._verificaId(id)
             const client = await clienteDAO.pegaUmCliente(id)
-            res.json(client)
+            res.status(302).json(client)
             
         }catch(error){
             res.status(404).json(error.message)
@@ -62,10 +62,12 @@ const clienteController = (app, bd)=>{
     app.delete('/cliente/id/:id', async (req, res)=>{
         const id = req.params.id
         try{
-            res.status(201).json(await clienteDAO.deletaCliente(id))
+            await clienteDAO._verificaId(id)
+            const delUsuario = await clienteDAO.deletaCliente(id)
+            res.status(201).json(delUsuario)
 
         } catch(error){
-            res.status(400).json(error)
+            res.status(400).json(error.message)
         }
 
         // .then((resposta)=>{
@@ -84,7 +86,9 @@ const clienteController = (app, bd)=>{
         try {
             const clienteAtualizado = new Cliente(body.ID, body.NOME_COMPLETO, body.CPF, body.TELEFONE, body.EMAIL, body.PEDIDOS_ID)
 
-            res.status(200).json(await clienteDAO.atualizaCliente(id, clienteAtualizado))
+            await clienteDAO._verificaId(id)
+            const attCliente = await clienteDAO.atualizaCliente(id, clienteAtualizado)
+            res.status(200).json(attCliente)
             // .then((resposta)=>{
             //     res.status(200).json(resposta)
             // })
@@ -93,7 +97,7 @@ const clienteController = (app, bd)=>{
             // })
         } catch (error) {
 
-            res.status(404).json(error)
+            res.status(404).json(error.message)
 
             res.json({
                 "msg": error.message,
