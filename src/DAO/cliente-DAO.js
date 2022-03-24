@@ -87,8 +87,8 @@ class ClienteDAO {
 
     atualizaCliente = (id, cliente)=>{
         return new Promise((resolve, reject)=>{
-            this.db.run('UPDATE CLIENTES SET NOME_COMPLETO = ?, CPF = ?, TELEFONE = ?, EMAIL = ? WHERE ID = ?',
-            cliente.nome_completo, cliente.cpf, cliente.telefone, cliente.email,
+            this.db.run('UPDATE CLIENTES SET NOME_COMPLETO = ?, CPF = ?, TELEFONE = ?, EMAIL = ?, PEDIDOS_ID = ? WHERE ID = ?',
+            cliente.nome_completo, cliente.cpf, cliente.telefone, cliente.email, cliente.pedidos_id,
             id,
             (error)=>{
                 if(error){
