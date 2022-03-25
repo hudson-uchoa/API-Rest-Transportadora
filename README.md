@@ -30,7 +30,7 @@ cd API-Rest-Transportadora
 ```
 npm install
 ```
-- Popule o banco de dados:
+- Crie e Popule o banco de dados:
 ```
 npm run database
 ```
