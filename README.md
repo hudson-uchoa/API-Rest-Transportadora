@@ -135,6 +135,7 @@ Exemplo da resposta esperada:
 ### <b> DELETE /cliente/id/{id} </b>
 
 Deleta o cliente escolhido da base de dados. Campo "{id}" deverá ser substituído pelo id do cliente a ser deletado.
+
 Exemplo da resposta esperada:
 
 ```
