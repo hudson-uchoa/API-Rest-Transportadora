@@ -1,209 +1,157 @@
-API REST TRANSPORTADORA
+# 🚚 API Transportadora
 
-Projeto de Final de Módulo do curso de Web Dev Full Stack da Resilia Educação referente ao Módulo 04.
+ <p align="justify">Projeto de encerramento do módulo 4 da Resilia Educação. O objetivo é desenvolver uma API Rest de uma transportadora.
 
-Projeto realizado utilizando o Node.js com framework Express.
+---
 
-Objetivo
-Esse projeto tem como objetivo criar uma API RESTful de uma Transportadora, onde será possível aplicar as operações CRUD na entidade Cliente.
+## 📘 Pré-requisitos
 
-Pré-Requisitos
-Node.js v.16.14.0
-NPM v.8.3.1
-Pacotes utilizados
-Express v.4.17.3
-Nodemon v.2.0.15
-SQLite v.5.0.0
-Instalação da Aplicação
-Abra o terminal/Powershell e rode os comandos abaixo:
+- <a href="https://nodejs.org/en/">Node.Js</a> - v. 16.13.2
+- <a href="https://www.npmjs.com/">NPM</a> - v. 8.1.2
+- <a href="https://expressjs.com/pt-br/">Express</a> - v. 4.17.3
+- <a href="https://www.npmjs.com/package/sqlite3">SQLite</a> - v. 5.0.0
+- <a href="https://nodemon.io/">Nodemon</a> - v. 2.0.15
 
-Clonando o repositório:
+---
 
+## 📖 Iniciando da aplicação
+
+ <p>Rode os comandos a seguir no terminal ou PoweShell.</p>
+ 
+ - Clone o repositório:
+```
 git clone https://github.com/Hudson-Uchoa/API-Rest-Transportadora.git
-Entrando na pasta:
-
+```
+- Acesse a pasta:
+```
 cd API-Rest-Transportadora
-Instalando os pacotes:
-
+```
+- Instale os pacotes necessários:
+```
 npm install
-Criando o banco de dados:
-
+```
+- Popule o banco de dados:
+```
 npm run database
-Iniciando o servidor:
+```
+- Inicie o servidor:
+```
+npm run start
+```
+<p>Ao iniciar o projeto, o servidor será aberto em http://localhost:3000/, sendo 3000 a porta padrão. Caso necessário, a porta poderá ser alterada no arquivo server.js</p>
 
-npm start
-Rotas implementadas
-Usuário
-GET /usuario
+---
 
-Schema da resposta
+## 📦 Rotas HTTP
 
+### <b> GET /cliente </b>
+
+Lista todos os clientes da base de dados.
+Exemplo da resposta esperada:
+
+```
 {
-    usuarios: [
+    "clientes": [
         {
-            "nome" : <String>,
-            "usuario: <String>,
-            "senha" : <String>
-        }
-    ],
-    erro: <Boleano>
-
-}
-GET /usuario/email/{email}
-
-Schema da resposta
-
-{
-    usuarios: [
+            "ID": 1,
+            "NOME_COMPLETO": "Carlos Alberto Albuquerque",
+            "CPF": 44213242190,
+            "TELEFONE": 27969216379,
+            "EMAIL": "carlos.alb12@gmail.com",
+            "PEDIDOS_ID": 1
+        },
         {
-            "nome" : <String>,
-            "usuario: <String>,
-            "senha" : <String>
+            "ID": 2,
+            "NOME_COMPLETO": "Olívia Ribeiro Ferreira",
+            "CPF": 91975838041,
+            "TELEFONE": 35998195626,
+            "EMAIL": "olivia.rib1@outlook.com",
+            "PEDIDOS_ID": 2
         }
-    ],
-    erro: <Boleano>
 
 }
-POST /usuario
 
-Schema da requisição
+```
 
+### <b> GET /cliente/id/{id} </b>
+
+Retorna o usuario de acordo com o id. Campo ":id" deverá ser substituído pelo id do usuario escolhido.
+Exemplo da resposta esperada:
+
+```
 {
-    "nome" : <String>,
-    "usuario: <String>,
-    "senha" : <String>
-}
-Schema da resposta
-
-{   
-    mensagem: <String>
-    usuario: {
-        "nome" : <String>,
-        "usuario: <String>,
-        "senha" : <String>
+    "usuario": {
+        "ID": 10,
+        "NOME_COMPLETO": "Márcia Melo Resende",
+        "CPF": 94137767092,
+        "TELEFONE": 67987741537,
+        "EMAIL": "marcia.resende.melo@gmail.com",
+        "PEDIDOS_ID": 10
     },
-    erro: <Boleano>
+    "erro": false
 }
-PUT /usuario/id/{id}
+```
 
-Schema da requisição
+### <b> POST /cliente </b>
 
+Insere um novo cliente na base de dados.
+
+Exemplo da resposta esperada:
+
+```
 {
-    "nome" : <String>,
-    "usuario: <String>,
-    "senha" : <String>
-}
-Schema da resposta
-
-{   
-    mensagem: <String>
-    usuario: {
-        "nome" : <String>,
-        "usuario: <String>,
-        "senha" : <String>
+    "mensagem": "Cliente Bruno Souza inserido com sucesso!",
+    "cliente": {
+        "nome_completo": "Bruno Souza",
+        "cpf": 24116942190,
+        "telefone": 21988322903,
+        "email": "bruno.souza23@gmail.com",
+        "pedidos_id": 111
     },
-    erro: <Boleano>
+    "erro": false
 }
-DELETE /usuario/id/{id}
+```
 
-Schema da resposta
+### <b> PUT /cliente/id/{id} </b>
 
-{   
-    mensagem: <String>
-    erro: <Boleano>
-}
-Tarefa
-GET /tarefa
+Atualiza um cliente na base de dados. Campo ":id" deverá ser substituído pelo id do cliente a ser atualizado.
 
-Schema da resposta
+Exemplo da resposta esperada:
 
+```
 {
-    tarefas: [
-        {
-            "titulo" : <String>,
-            "descricao: <String>,
-            "status" : <String>
-            "dataCriação" : <String>,
-            "idUsuario" : <Int>
-        }
-    ],
-    erro: <Boleano>
-
-}
-GET /tarefa/titulo/{titulo}
-
-Schema da resposta
-
-{
-    tarefas: [
-        {
-            "titulo" : <String>,
-            "descricao: <String>,
-            "status" : <String>
-            "dataCriação" : <String>,
-            "idUsuario" : <Int>
-        }
-    ],
-    erro: <Boleano>
-
-}
-POST /tarefa
-
-Schema da requisição
-
-{
-    "titulo" : <String>,
-    "descricao: <String>,
-    "status" : #{"Fazendo", "A fazer", "Feito"},
-    "idUsuario" : <Int>
-}
-Schema da resposta
-
-{
-    mensagem: <String>
-    tarefa: {
-        "titulo" : <String>,
-        "descricao: <String>,
-        "status" : <String>
-        "dataCriação" : <String>,
-        "idUsuario" : <Int>
+    "mensagem": "Cliente de id 11 atualizado com sucesso",
+    "cliente": {
+        "nome_completo": "Hudson Lima",
+        "cpf": 54116942190,
+        "telefone": 21988785903,
+        "email": "ronaldo.lima2@gmail.com",
+        "pedidos_id": 300
     },
-    erro: <Boleano>
+    "erro": false
 }
-PUT /tarefa/id/{id}
+```
 
-Schema da requisição
+### <b> DELETE /cliente/id/{id} </b>
 
+Deleta o cliente escolhido da base de dados.
+Exemplo da resposta esperada:
+
+```
 {
-    "titulo" : <String>,
-    "descricao: <String>,
-    "status" : #{"Fazendo", "A fazer", "Feito"},
-    "idUsuario" : <Int>
+    "cliente": "Cliente de id 11 deletado com sucesso!",
+    "erro": false
 }
-Schema da resposta
+```
 
-{
-    mensagem: <String>
-    tarefa: {
-        "titulo" : <String>,
-        "descricao: <String>,
-        "status" : <String>
-        "dataCriação" : <String>,
-        "idUsuario" : <Int>
-    },
-    erro: <Boleano>
-}
-DELETE /tarefa/id/{id}
+---
 
-Schema da resposta
+---
 
-{
-    mensagem: <String>
-    erro: <Boleano>
-}
-Rodando teste
-Para rodar os teste, utilizando o framework Jest e o Supertest basta rodar o comando abaixo:
+## 🚛 Desenvolvido por
 
-npm test
-Sobre as branches
-Com o objetivo de manter o histórico da evolução do projeto de fácil acesso, cada branch desse repositório irá representar o estado do projeto ao final da aula.
+<b>Hudson Lima Uchoa 👨‍💻</b>
+
+<p>Estudante de Desenvolvimento Web Full Stack.</p>
+
+[![Linkedin Badge](https://img.shields.io/badge/-Linkedin-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/anderson-da-cunha-vidal-2560a520a/)](https://www.linkedin.com/in/hudson-lima-uchoa/)
