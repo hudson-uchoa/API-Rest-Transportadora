@@ -99,7 +99,7 @@ class ClienteDAO {
                 }else{
                     resolve({
                         "mensagem": `Cliente de id ${id} atualizado com sucesso`,
-                        "cliente": cliente,
+                        "cliente": Cliente,
                         "erro": false
                     })
                 }
