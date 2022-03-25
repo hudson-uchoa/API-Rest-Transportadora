@@ -75,7 +75,7 @@ Exemplo da resposta esperada:
 
 ### <b> GET /cliente/id/{id} </b>
 
-Retorna o usuario de acordo com o id. Campo ":id" deverá ser substituído pelo id do usuario escolhido.
+Retorna o cliente de acordo com o id. Campo ":id" deverá ser substituído pelo id do cliente escolhido.
 Exemplo da resposta esperada:
 
 ```
