@@ -30,7 +30,7 @@ cd API-Rest-Transportadora
 ```
 npm install
 ```
-- Popule o banco de dados:
+- Crie e Popule o banco de dados:
 ```
 npm run database
 ```
@@ -75,7 +75,7 @@ Exemplo da resposta esperada:
 
 ### <b> GET /cliente/id/{id} </b>
 
-Retorna o usuario de acordo com o id. Campo ":id" deverá ser substituído pelo id do usuario escolhido.
+Retorna o cliente de acordo com o id. Campo "{id}" deverá ser substituído pelo id do cliente escolhido.
 Exemplo da resposta esperada:
 
 ```
@@ -114,7 +114,7 @@ Exemplo da resposta esperada:
 
 ### <b> PUT /cliente/id/{id} </b>
 
-Atualiza um cliente na base de dados. Campo ":id" deverá ser substituído pelo id do cliente a ser atualizado.
+Atualiza um cliente na base de dados. Campo "{id}" deverá ser substituído pelo id do cliente a ser atualizado.
 
 Exemplo da resposta esperada:
 
@@ -134,7 +134,8 @@ Exemplo da resposta esperada:
 
 ### <b> DELETE /cliente/id/{id} </b>
 
-Deleta o cliente escolhido da base de dados.
+Deleta o cliente escolhido da base de dados. Campo "{id}" deverá ser substituído pelo id do cliente a ser deletado.
+
 Exemplo da resposta esperada:
 
 ```
