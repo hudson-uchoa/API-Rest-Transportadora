@@ -23,6 +23,7 @@
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.17.3",
+    "heroku": "^7.60.1",
     "sqlite3": "^5.0.2"
   },
   "devDependencies": {
