@@ -35,6 +35,49 @@ const clienteController = (app, bd) => {
     // })
   });
 
+  app.get("/cliente/email/:email", async (req, res) => {
+    const email = req.params.email;
+    try {
+      await clienteDAO._verificaEmail(email);
+      const client = await clienteDAO.pegaUmClienteporEmail(email);
+      res.status(302).json(client);
+    } catch (error) {
+      res.status(404).json(error.message);
+    }
+    // .then((resposta)=>{
+    //     res.status(302).json(resposta)
+    // })
+    // .catch((erro)=>{
+    //     res.status(404).json(erro)
+    // })
+  });
+
+  app.post("/cliente/login", async (req, res) => {
+    const { EMAIL, SENHA } = req.body;
+    try {
+      const login = await clienteDAO.pegaUmClienteporEmail(EMAIL);
+      // console.log(`Login ${login.usuario.EMAIL} ${login.usuario.SENHA}`);
+      // console.log(`Body ${EMAIL} ${SENHA}`);
+      if (EMAIL !== login.usuario.EMAIL || SENHA !== login.usuario.SENHA) {
+        return res.status(400).json({
+          message: "Email ou senha inválidas!",
+          error: true,
+        });
+      }
+      res.status(200).json({
+        usuario: login.usuario,
+        msg: `Usuario ${login.usuario.NOME_COMPLETO} logado!`,
+      });
+    } catch (error) {
+      res.status(400).json(error);
+
+      res.json({
+        msg: error.message,
+        erro: true,
+      });
+    }
+  });
+
   app.post("/cliente", async (req, res) => {
     const body = req.body;
     try {
