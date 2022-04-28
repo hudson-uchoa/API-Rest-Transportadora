@@ -69,11 +69,9 @@ const clienteController = (app, bd) => {
         msg: `Usuario ${login.usuario.NOME_COMPLETO} logado!`,
       });
     } catch (error) {
-      res.status(400).json(error);
-
-      res.json({
-        msg: error.message,
-        erro: true,
+      res.status(400).json({
+        message: "Email ou senha inválidas!",
+        error: true,
       });
     }
   });
