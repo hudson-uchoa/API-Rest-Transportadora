@@ -23,7 +23,7 @@ const clienteController = (app, bd) => {
     try {
       await clienteDAO._verificaId(id);
       const client = await clienteDAO.pegaUmCliente(id);
-      res.status(302).json(client);
+      res.status(201).json(client);
     } catch (error) {
       res.status(404).json(error.message);
     }
@@ -40,7 +40,7 @@ const clienteController = (app, bd) => {
     try {
       await clienteDAO._verificaEmail(email);
       const client = await clienteDAO.pegaUmClienteporEmail(email);
-      res.status(302).json(client);
+      res.status(201).json(client);
     } catch (error) {
       res.status(404).json(error.message);
     }
