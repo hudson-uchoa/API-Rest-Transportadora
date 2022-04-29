@@ -12,8 +12,8 @@ const CLIENTES_SCHEMA = `
 CREATE TABLE IF NOT EXISTS "CLIENTES" (
     "ID" INTEGER PRIMARY KEY AUTOINCREMENT,
     "NOME_COMPLETO" varchar(40),
-    "CPF" number,
-    "TELEFONE" number,
+    "CPF" varchar(11),
+    "TELEFONE" varchar(30),
     "SENHA" varchar(30),
     "EMAIL" varchar(30)
   );`;
