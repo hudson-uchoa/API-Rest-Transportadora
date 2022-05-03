@@ -10,12 +10,6 @@ const clienteController = (app, bd) => {
     } catch (error) {
       res.status(400).json(error);
     }
-    // .then((resposta)=>{
-    //     res.status(302).json(resposta)
-    // })
-    // .catch((erro)=>{
-    //     res.status(404).json(erro)
-    // })
   });
 
   app.get("/cliente/id/:id", async (req, res) => {
@@ -27,12 +21,6 @@ const clienteController = (app, bd) => {
     } catch (error) {
       res.status(404).json(error.message);
     }
-    // .then((resposta)=>{
-    //     res.status(302).json(resposta)
-    // })
-    // .catch((erro)=>{
-    //     res.status(404).json(erro)
-    // })
   });
 
   app.get("/cliente/email/:email", async (req, res) => {
@@ -44,20 +32,12 @@ const clienteController = (app, bd) => {
     } catch (error) {
       res.status(404).json(error.message);
     }
-    // .then((resposta)=>{
-    //     res.status(302).json(resposta)
-    // })
-    // .catch((erro)=>{
-    //     res.status(404).json(erro)
-    // })
   });
 
   app.post("/cliente/login", async (req, res) => {
     const { EMAIL, SENHA } = req.body;
     try {
       const login = await clienteDAO.pegaUmClienteporEmail(EMAIL);
-      // console.log(`Login ${login.usuario.EMAIL} ${login.usuario.SENHA}`);
-      // console.log(`Body ${EMAIL} ${SENHA}`);
       if (EMAIL !== login.usuario.EMAIL || SENHA !== login.usuario.SENHA) {
         return res.status(400).json({
           message: "Email ou senha inválidas!",
@@ -89,12 +69,6 @@ const clienteController = (app, bd) => {
       );
 
       res.status(201).json(await clienteDAO.insereCliente(novoCliente));
-      // .then((resposta)=>{
-      //     res.status(201).json(resposta)
-      // })
-      // .catch((erro)=>{
-      //     res.status(400).json(erro)
-      // })
     } catch (error) {
       res.status(400).json(error);
 
@@ -114,13 +88,6 @@ const clienteController = (app, bd) => {
     } catch (error) {
       res.status(400).json(error.message);
     }
-
-    // .then((resposta)=>{
-    //     res.status(200).json(resposta)
-    // })
-    // .catch((erro)=>{
-    //     res.status(404).json(erro)
-    // })
   });
 
   app.put("/cliente/id/:id", async (req, res) => {
@@ -143,12 +110,6 @@ const clienteController = (app, bd) => {
         clienteAtualizado
       );
       res.status(200).json(attCliente);
-      // .then((resposta)=>{
-      //     res.status(200).json(resposta)
-      // })
-      // .catch((erro)=>{
-      //     res.status(404).json(erro)
-      // })
     } catch (error) {
       res.status(404).json(error.message);
 
