@@ -19,7 +19,10 @@ const clienteController = (app, bd) => {
       const client = await clienteDAO.pegaUmCliente(id);
       res.status(201).json(client);
     } catch (error) {
-      res.status(404).json(error.message);
+      res.status(404).json({
+        msg: error.message,
+        error: true
+      });
     }
   });
 
@@ -30,7 +33,10 @@ const clienteController = (app, bd) => {
       const client = await clienteDAO.pegaUmClienteporEmail(email);
       res.status(201).json(client);
     } catch (error) {
-      res.status(404).json(error.message);
+      res.status(404).json({
+        msg: error.message,
+        error: true
+      });
     }
   });
 
@@ -70,11 +76,9 @@ const clienteController = (app, bd) => {
 
       res.status(201).json(await clienteDAO.insereCliente(novoCliente));
     } catch (error) {
-      res.status(400).json(error);
-
-      res.json({
+      res.status(400).json({
         msg: error.message,
-        erro: true,
+        error: true
       });
     }
   });
@@ -86,7 +90,10 @@ const clienteController = (app, bd) => {
       const delUsuario = await clienteDAO.deletaCliente(id);
       res.status(201).json(delUsuario);
     } catch (error) {
-      res.status(400).json(error.message);
+      res.status(400).json({
+        msg: error.message,
+        error: true
+      });
     }
   });
 
@@ -111,11 +118,9 @@ const clienteController = (app, bd) => {
       );
       res.status(200).json(attCliente);
     } catch (error) {
-      res.status(404).json(error.message);
-
-      res.json({
+      res.status(404).json({
         msg: error.message,
-        erro: true,
+        error: true
       });
     }
   });
