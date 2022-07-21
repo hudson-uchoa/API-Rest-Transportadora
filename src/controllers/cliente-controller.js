@@ -1,5 +1,6 @@
 import Cliente from "../models/Cliente.js";
 import ClienteDAO from "../DAO/cliente-DAO.js";
+import { validAll as validacoesServices } from "../services/validacao.js";
 
 const clienteController = (app, bd) => {
   const clienteDAO = new ClienteDAO(bd);
@@ -10,7 +11,7 @@ const clienteController = (app, bd) => {
     } catch (error) {
       res.status(400).json({
         msg: error.message,
-        error: true
+        error: true,
       });
     }
   });
@@ -24,7 +25,7 @@ const clienteController = (app, bd) => {
     } catch (error) {
       res.status(404).json({
         msg: error.message,
-        error: true
+        error: true,
       });
     }
   });
@@ -38,7 +39,7 @@ const clienteController = (app, bd) => {
     } catch (error) {
       res.status(404).json({
         msg: error.message,
-        error: true
+        error: true,
       });
     }
   });
@@ -68,20 +69,29 @@ const clienteController = (app, bd) => {
   app.post("/cliente", async (req, res) => {
     const body = req.body;
     try {
-      const novoCliente = new Cliente(
-        body.ID,
-        body.NOME_COMPLETO,
-        body.CPF,
-        body.TELEFONE,
-        body.SENHA,
-        body.EMAIL
-      );
-
-      res.status(201).json(await clienteDAO.insereCliente(novoCliente));
+      if (
+        validacoesServices(
+          body.NOME_COMPLETO,
+          body.CPF,
+          body.TELEFONE,
+          body.SENHA,
+          body.EMAIL
+        )
+      ) {
+        const novoCliente = new Cliente(
+          body.ID,
+          body.NOME_COMPLETO,
+          body.CPF,
+          body.TELEFONE,
+          body.SENHA,
+          body.EMAIL
+        );
+        res.status(201).json(await clienteDAO.insereCliente(novoCliente));
+      }
     } catch (error) {
       res.status(400).json({
         msg: error.message,
-        error: true
+        error: true,
       });
     }
   });
@@ -95,7 +105,7 @@ const clienteController = (app, bd) => {
     } catch (error) {
       res.status(400).json({
         msg: error.message,
-        error: true
+        error: true,
       });
     }
   });
@@ -105,25 +115,34 @@ const clienteController = (app, bd) => {
     const body = req.body;
 
     try {
-      const clienteAtualizado = new Cliente(
-        body.ID,
-        body.NOME_COMPLETO,
-        body.CPF,
-        body.TELEFONE,
-        body.SENHA,
-        body.EMAIL
-      );
-
-      await clienteDAO._verificaId(id);
-      const attCliente = await clienteDAO.atualizaCliente(
-        id,
-        clienteAtualizado
-      );
-      res.status(200).json(attCliente);
+      if (
+        validacoesServices(
+          body.NOME_COMPLETO,
+          body.CPF,
+          body.TELEFONE,
+          body.SENHA,
+          body.EMAIL
+        )
+      ) {
+        const clienteAtualizado = new Cliente(
+          body.ID,
+          body.NOME_COMPLETO,
+          body.CPF,
+          body.TELEFONE,
+          body.SENHA,
+          body.EMAIL
+        );
+        await clienteDAO._verificaId(id);
+        const attCliente = await clienteDAO.atualizaCliente(
+          id,
+          clienteAtualizado
+        );
+        res.status(200).json(attCliente);
+      }
     } catch (error) {
-      res.status(404).json({
+      res.status(400).json({
         msg: error.message,
-        error: true
+        error: true,
       });
     }
   });
