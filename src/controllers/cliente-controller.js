@@ -8,7 +8,10 @@ const clienteController = (app, bd) => {
     try {
       res.json(await clienteDAO.pegaTodosClientes());
     } catch (error) {
-      res.status(400).json(error);
+      res.status(400).json({
+        msg: error.message,
+        error: true
+      });
     }
   });
 
