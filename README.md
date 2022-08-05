@@ -10,7 +10,6 @@
 - <a href="https://www.npmjs.com/">NPM</a> - v. 8.1.2
 - <a href="https://expressjs.com/pt-br/">Express</a> - v. 4.17.3
 - <a href="https://www.npmjs.com/package/sqlite3">SQLite</a> - v. 5.0.0
-- <a href="https://nodemon.io/">Nodemon</a> - v. 2.0.15
 
 ---
 
@@ -28,7 +27,7 @@ cd API-Rest-Transportadora
 ```
 - Instale os pacotes necessários:
 ```
-npm install
+npm i --production
 ```
 - Crie e Popule o banco de dados:
 ```
@@ -36,7 +35,7 @@ npm run database
 ```
 - Inicie o servidor:
 ```
-npm run start
+npm start
 ```
 <p>Ao iniciar o projeto, o servidor será aberto em http://localhost:3000/, sendo 3000 a porta padrão. Caso necessário, a porta poderá ser alterada no arquivo server.js</p>
 
