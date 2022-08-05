@@ -7,10 +7,7 @@ class ClienteDAO {
     return new Promise((resolve, reject) => {
       this.db.all("SELECT * FROM CLIENTES", (error, rows) => {
         if (error) {
-          reject({
-            mensagem: error.message,
-            erro: true,
-          });
+          reject(error);
         } else {
           resolve({
             clientes: rows,
@@ -25,10 +22,7 @@ class ClienteDAO {
     return new Promise((resolve, reject) => {
       this.db.get("SELECT * FROM CLIENTES WHERE ID = ?", id, (error, rows) => {
         if (error) {
-          reject({
-            mensagem: error.message,
-            erro: true,
-          });
+          reject(error);
         } else {
           resolve({
             usuario: rows,
@@ -46,10 +40,7 @@ class ClienteDAO {
         email,
         (error, rows) => {
           if (error) {
-            reject({
-              mensagem: error.message,
-              erro: true,
-            });
+            reject(error);
           } else {
             resolve({
               usuario: rows,
@@ -68,10 +59,7 @@ class ClienteDAO {
         senha,
         (error, rows) => {
           if (error) {
-            reject({
-              mensagem: error.message,
-              erro: true,
-            });
+            reject(error);
           } else {
             resolve({
               usuario: rows,
@@ -95,10 +83,7 @@ class ClienteDAO {
         novoCliente.email,
         (error) => {
           if (error) {
-            reject({
-              mensagem: error.message,
-              erro: true,
-            });
+            reject(error);
           } else {
             resolve({
               mensagem: `Cliente ${novoCliente.nome_completo} inserido com sucesso!`,
@@ -115,10 +100,7 @@ class ClienteDAO {
     return new Promise((resolve, reject) => {
       this.db.run("DELETE FROM CLIENTES WHERE ID = ?", id, (error) => {
         if (error) {
-          reject({
-            mensagem: error.message,
-            erro: true,
-          });
+          reject(error);
         } else {
           resolve({
             cliente: `Cliente de id ${id} deletado com sucesso!`,
@@ -141,10 +123,7 @@ class ClienteDAO {
         id,
         (error) => {
           if (error) {
-            reject({
-              mensagem: error.message,
-              erro: true,
-            });
+            reject(error);
           } else {
             resolve({
               mensagem: `Cliente de id ${id} atualizado com sucesso`,
@@ -160,14 +139,14 @@ class ClienteDAO {
   _verificaId = async (id) => {
     const usuario = await this.pegaUmCliente(id);
     if (usuario.usuario === undefined) {
-      throw new Error(`Usuario de ${id} não encontrado.`);
+      throw new Error(`Usuario de id ${id} não encontrado.`);
     }
     return usuario;
   };
   _verificaEmail = async (email) => {
     const usuario = await this.pegaUmClienteporEmail(email);
     if (usuario.usuario === undefined) {
-      throw new Error(`Usuario de ${email} não encontrado.`);
+      throw new Error(`Usuario de email ${email} não encontrado.`);
     }
     return usuario;
   };
