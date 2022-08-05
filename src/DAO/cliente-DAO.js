@@ -11,7 +11,7 @@ class ClienteDAO {
         } else {
           resolve({
             clientes: rows,
-            erro: false,
+            error: false,
           });
         }
       });
@@ -26,7 +26,7 @@ class ClienteDAO {
         } else {
           resolve({
             usuario: rows,
-            erro: false,
+            error: false,
           });
         }
       });
@@ -44,7 +44,7 @@ class ClienteDAO {
           } else {
             resolve({
               usuario: rows,
-              erro: false,
+              error: false,
             });
           }
         }
@@ -63,7 +63,7 @@ class ClienteDAO {
           } else {
             resolve({
               usuario: rows,
-              erro: false,
+              error: false,
             });
           }
         }
@@ -88,7 +88,7 @@ class ClienteDAO {
             resolve({
               mensagem: `Cliente ${novoCliente.nome_completo} inserido com sucesso!`,
               cliente: novoCliente,
-              erro: false,
+              error: false,
             });
           }
         }
@@ -104,7 +104,7 @@ class ClienteDAO {
         } else {
           resolve({
             cliente: `Cliente de id ${id} deletado com sucesso!`,
-            erro: false,
+            error: false,
           });
         }
       });
@@ -128,7 +128,7 @@ class ClienteDAO {
             resolve({
               mensagem: `Cliente de id ${id} atualizado com sucesso`,
               cliente: Cliente,
-              erro: false,
+              error: false,
             });
           }
         }
